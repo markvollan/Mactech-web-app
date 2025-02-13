@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .drag-area {
+      border: 2px dashed #d1d5db;
+      padding: 20px;
+      text-align: center;
+      color: #6b7280;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- Header -->
+  <header class="bg-blue-600 text-white py-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-3xl font-bold">Admin Dashboard</h1>
+      <nav class="flex gap-4">
+        <a href="#add-item" class="px-4 py-2 bg-white text-blue-600 rounded-lg">Add Item</a>
+        <a href="#view-orders" class="px-4 py-2 bg-white text-blue-600 rounded-lg">View Orders</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container mx-auto py-10">
+    <!-- Add Item Section -->
+    <section id="add-item" class="bg-white shadow-lg rounded-lg p-6 mb-10">
+      <h2 class="text-2xl font-bold mb-6">Add New Item</h2>
+      <form>
+        <div class="mb-4">
+          <label for="item-name" class="block text-gray-700">Item Name</label>
+          <input type="text" id="item-name" name="item-name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div class="mb-4">
+          <label for="item-image" class="block text-gray-700">Image</label>
+          <div id="image-upload-area" class="drag-area">
+            <p>Drag & drop an image here, or click to browse</p>
+            <input type="file" id="item-image" name="item-image" class="hidden" accept="image/*">
+          </div>
+        </div>
+        <div class="mb-4">
+          <label for="item-price" class="block text-gray-700">Price</label>
+          <input type="number" id="item-price" name="item-price" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div class="mb-4">
+          <label for="item-description" class="block text-gray-700">Description</label>
+          <textarea id="item-description" name="item-description" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+        </div>
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Add Item</button>
+      </form>
+    </section>
+
+    <!-- View Items Section -->
+    <section id="view-items" class="bg-white shadow-lg rounded-lg p-6 mb-10">
+      <h2 class="text-2xl font-bold mb-6">View Items</h2>
+      <table class="table-auto w-full">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="px-4 py-2">Item Name</th>
+            <th class="px-4 py-2">Price</th>
+            <th class="px-4 py-2">Description</th>
+            <th class="px-4 py-2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Placeholder Row -->
+          <tr>
+            <td class="border px-4 py-2">Sample Item</td>
+            <td class="border px-4 py-2">$50</td>
+            <td class="border px-4 py-2">Sample description</td>
+            <td class="border px-4 py-2 flex gap-2">
+              <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600">Edit</button>
+              <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- View Orders Section -->
+    <section id="view-orders" class="bg-white shadow-lg rounded-lg p-6">
+      <h2 class="text-2xl font-bold mb-6">View Orders</h2>
+      <table class="table-auto w-full">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="px-4 py-2">Order ID</th>
+            <th class="px-4 py-2">Customer Name</th>
+            <th class="px-4 py-2">Total</th>
+            <th class="px-4 py-2">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Placeholder Order Row -->
+          <tr>
+            <td class="border px-4 py-2">1001</td>
+            <td class="border px-4 py-2">John Doe</td>
+            <td class="border px-4 py-2">$120</td>
+            <td class="border px-4 py-2">Pending</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script>
+    // Drag-and-drop image upload functionality
+    const imageUploadArea = document.getElementById('image-upload-area');
+    const imageInput = document.getElementById('item-image');
+
+    imageUploadArea.addEventListener('click', () => {
+      imageInput.click();
+    });
+
+    imageInput.addEventListener('change', (e) => {
+      const fileName = e.target.files[0].name;
+      imageUploadArea.innerHTML = `<p>Uploaded: ${fileName}</p>`;
+    });
+
+    imageUploadArea.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      imageUploadArea.style.borderColor = '#3b82f6';
+    });
+
+    imageUploadArea.addEventListener('dragleave', () => {
+      imageUploadArea.style.borderColor = '#d1d5db';
+    });
+
+    imageUploadArea.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const file = e.dataTransfer.files[0];
+      imageInput.files = e.dataTransfer.files; // Assign the dropped file to the input
+      imageUploadArea.innerHTML = `<p>Uploaded: ${file.name}</p>`;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Homepage</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-900">
+  <header class="bg-blue-600 text-white py-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-3xl font-bold">My Business</h1>
+      <nav>
+        <a href="login.html" class="px-4 py-2 bg-white text-blue-600 rounded-lg">Admin Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero bg-cover bg-center py-20" style="background-image: url('https://via.placeholder.com/1500x500');">
+    <div class="container mx-auto text-center">
+      <h2 class="text-5xl font-bold text-white">Welcome to Our Store</h2>
+      <p class="text-lg text-white mt-4">Explore our categories and find what you need!</p>
+    </div>
+  </section>
+
+  <section class="categories py-10">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="category-card bg-white shadow-lg rounded-lg p-6 text-center">
+        <h3 class="text-2xl font-bold">Category 1</h3>
+        <p class="mt-2">Explore items in Category 1</p>
+      </div>
+      <div class="category-card bg-white shadow-lg rounded-lg p-6 text-center">
+        <h3 class="text-2xl font-bold">Category 2</h3>
+        <p class="mt-2">Explore items in Category 2</p>
+      </div>
+      <div class="category-card bg-white shadow-lg rounded-lg p-6 text-center">
+        <h3 class="text-2xl font-bold">Category 3</h3>
+        <p class="mt-2">Explore items in Category 3</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-gray-800 text-white py-4 text-center">
+    <p>&copy; 2025 My Business. All rights reserved.</p>
+  </footer>
+</body>
+</html>

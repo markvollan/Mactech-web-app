@@ -1,0 +1,209 @@
+<!-- admin_dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <!-- Header -->
+  <header class="bg-blue-600 text-white py-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-3xl font-bold">Admin Dashboard</h1>
+      <nav class="flex gap-4">
+        <a href="#add-item" class="px-4 py-2 bg-white text-blue-600 rounded-lg">Add Item</a>
+        <a href="#view-orders" class="px-4 py-2 bg-white text-blue-600 rounded-lg">View Orders</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container mx-auto py-10">
+    <!-- Add Item Section -->
+    <section id="add-item" class="bg-white shadow-lg rounded-lg p-6 mb-10">
+      <h2 class="text-2xl font-bold mb-6">Add New Item</h2>
+      <form>
+        <div class="mb-4">
+          <label for="item-name" class="block text-gray-700">Item Name</label>
+          <input type="text" id="item-name" name="item-name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div class="mb-4">
+          <label for="item-image" class="block text-gray-700">Image URL</label>
+          <input type="text" id="item-image" name="item-image" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div class="mb-4">
+          <label for="item-price" class="block text-gray-700">Price</label>
+          <input type="number" id="item-price" name="item-price" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div class="mb-4">
+          <label for="item-description" class="block text-gray-700">Description</label>
+          <textarea id="item-description" name="item-description" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+        </div>
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Add Item</button>
+      </form>
+    </section>
+
+    <!-- View Items Section -->
+    <section id="view-items" class="bg-white shadow-lg rounded-lg p-6 mb-10">
+      <h2 class="text-2xl font-bold mb-6">View Items</h2>
+      <table class="table-auto w-full">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="px-4 py-2">Item Name</th>
+            <th class="px-4 py-2">Price</th>
+            <th class="px-4 py-2">Description</th>
+            <th class="px-4 py-2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Placeholder Row -->
+          <tr>
+            <td class="border px-4 py-2">Sample Item</td>
+            <td class="border px-4 py-2">$50</td>
+            <td class="border px-4 py-2">Sample description</td>
+            <td class="border px-4 py-2">
+              <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- View Orders Section -->
+    <section id="view-orders" class="bg-white shadow-lg rounded-lg p-6">
+      <h2 class="text-2xl font-bold mb-6">View Orders</h2>
+      <table class="table-auto w-full">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="px-4 py-2">Order ID</th>
+            <th class="px-4 py-2">Customer Name</th>
+            <th class="px-4 py-2">Total</th>
+            <th class="px-4 py-2">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Placeholder Order Row -->
+          <tr>
+            <td class="border px-4 py-2">1001</td>
+            <td class="border px-4 py-2">John Doe</td>
+            <td class="border px-4 py-2">$120</td>
+            <td class="border px-4 py-2">Pending</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <!-- Add the edit modal to admin_dashboard.html -->
+<!-- Place this just before the closing </body> tag -->
+
+<!-- Edit Item Modal -->
+<div id="edit-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+      <h2 class="text-2xl font-bold mb-4">Edit Item</h2>
+      <form id="edit-item-form">
+        <input type="hidden" id="edit-item-id" />
+        <div class="mb-4">
+          <label for="edit-item-name" class="block text-gray-700">Item Name</label>
+          <input type="text" id="edit-item-name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div class="mb-4">
+          <label for="edit-item-price" class="block text-gray-700">Price</label>
+          <input type="number" id="edit-item-price" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div class="mb-4">
+          <label for="edit-item-description" class="block text-gray-700">Description</label>
+          <textarea id="edit-item-description" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+        </div>
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Save Changes</button>
+        <button type="button" id="close-edit-modal" class="w-full mt-2 bg-gray-600 text-white py-2 rounded-lg hover:bg-gray-700">Cancel</button>
+      </form>
+    </div>
+  </div>
+  
+  <script>
+    // Sample data for items
+    let items = [
+      { id: 1, name: "Sample Item", price: 50, description: "Sample description" }
+    ];
+  
+    // Render items in the table
+    function renderItems() {
+      const tbody = document.querySelector("#view-items tbody");
+      tbody.innerHTML = ""; // Clear existing rows
+      items.forEach((item) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td class="border px-4 py-2">${item.name}</td>
+          <td class="border px-4 py-2">$${item.price}</td>
+          <td class="border px-4 py-2">${item.description}</td>
+          <td class="border px-4 py-2 flex gap-2">
+            <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600" onclick="openEditModal(${item.id})">Edit</button>
+            <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700" onclick="deleteItem(${item.id})">Delete</button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+  
+    // Add new item (dummy function for now)
+    document.querySelector("form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      // Dummy: Add new item logic here
+      alert("Add item functionality will be implemented next.");
+    });
+  
+    // Open the Edit Modal and populate with item data
+    function openEditModal(itemId) {
+      const item = items.find((i) => i.id === itemId);
+      if (item) {
+        document.getElementById("edit-item-id").value = item.id;
+        document.getElementById("edit-item-name").value = item.name;
+        document.getElementById("edit-item-price").value = item.price;
+        document.getElementById("edit-item-description").value = item.description;
+        document.getElementById("edit-modal").classList.remove("hidden");
+      }
+    }
+  
+    // Close the Edit Modal
+    document.getElementById("close-edit-modal").addEventListener("click", () => {
+      document.getElementById("edit-modal").classList.add("hidden");
+    });
+  
+    // Save the edited item
+    document.getElementById("edit-item-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const itemId = parseInt(document.getElementById("edit-item-id").value);
+      const itemName = document.getElementById("edit-item-name").value;
+      const itemPrice = parseFloat(document.getElementById("edit-item-price").value);
+      const itemDescription = document.getElementById("edit-item-description").value;
+  
+      // Update the item in the array
+      const itemIndex = items.findIndex((i) => i.id === itemId);
+      if (itemIndex !== -1) {
+        items[itemIndex] = {
+          ...items[itemIndex],
+          name: itemName,
+          price: itemPrice,
+          description: itemDescription
+        };
+      }
+  
+      // Re-render the items and close the modal
+      renderItems();
+      document.getElementById("edit-modal").classList.add("hidden");
+    });
+  
+    // Delete an item
+    function deleteItem(itemId) {
+      items = items.filter((item) => item.id !== itemId);
+      renderItems();
+    }
+  
+    // Initial render
+    renderItems();
+  </script>
+  
+</body>
+</html>
